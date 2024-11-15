@@ -1,7 +1,8 @@
 #include "Videos/video-objects.h"
 
 /*
-240 x 120
+480 x 240
+round RGB: 128
 
 Start frame: 4970
 Frame count: 1

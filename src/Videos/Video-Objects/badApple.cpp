@@ -1,9 +1,7 @@
 #include "Videos/video-objects.h"
 
 /*
-32 x 16
-or
-20 x 10
+24 x 12
 
 Start frame: 4840
 Frame count: 23
