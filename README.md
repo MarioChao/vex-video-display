@@ -14,7 +14,7 @@ SRC_C += $(wildcard src/*/*/*.cpp)
 SRC_C += $(wildcard src/*/*/*.c)
 ```
 
-## Instruction
+## Instructions
 
 Importing the project into an existing program:
 
@@ -39,11 +39,13 @@ Creating new images and videos:
 	1. For image converter, only use the **original format** vector if the image type is PNG or BMP and the dimension is less than 480 x 240.
 	2. The output images can usually be further compressed using tools like online PNG compressors.
 4. Copy the output vector into the renamed file.
-	1. For raw RGB pixels, copy it to `video` and use the first type of constructor. (fps, framestep,)
+	1. For raw RGB pixels, copy it to `video` and use the first type of constructor.<br>
+	The parameters are (`fps, frameSteps, *video, width, height`).
 	```c++
 	VideoInfo _image1(30, 10, &::video, 480, 240);
 	```
-	2. For original or PNG format, make sure the dimension is less than 480 x 240, then copy the vector to `videoBuffer` and use the second type of constructor:
+	2. For original or PNG format, make sure the dimension is less than 480 x 240, then copy the vector to `videoBuffer` and use the second type of constructor.<br>
+	The parameters are (`fps, frameSteps, *videoBuffer`).
 	```c++
 	VideoInfo _image1(30, 10, &::videoBuffer);
 	```
