@@ -16,6 +16,8 @@ vex::brain       Brain;
 // define your global instances of motors and other devices here
 vex::controller Controller1(vex::primary);
 
+// Functions
+
 int main() {
 	video::startThread();
 	video::keybindVideos();

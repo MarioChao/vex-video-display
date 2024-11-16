@@ -2,6 +2,7 @@
 
 /*
 24 x 12
+round RGB: 1
 
 Start frame: 4840
 Frame count: 23
@@ -9,7 +10,9 @@ Frame step: 10
 FPS: 30
 */
 
-std::vector< std::vector< std::vector<int> > > badApple_video = {{
+namespace {
+
+std::vector< std::vector< std::vector<int> > > video = {{
 {16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,
 16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,16777215,
 
@@ -407,4 +410,8 @@ std::vector< std::vector< std::vector<int> > > badApple_video = {{
 },},
 };
 
-VideoInfo badApple_suika(30, 10, &badApple_video, 240, 120);
+std::vector< std::vector<uint8_t> > videoBuffer = {};
+
+}
+
+VideoInfo badApple_suika(30, 10, &::video, 240, 120);

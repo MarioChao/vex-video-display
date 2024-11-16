@@ -76,8 +76,6 @@ void VideoInfo::drawFrameRGB(int x, int y) {
 
 	// Get frame
 	std::vector< std::vector<int> > frame = savedVideo[frameId];
-	// printf("Frame: %d\n", frameId);
-
 
 	/* Draw frame at position */
 
@@ -123,8 +121,6 @@ void VideoInfo::drawFrameBuffer(int x, int y) {
 	// Get frame
 	uint8_t *frame = &savedVideoBuffer[frameId][0];
 	int frameSize = (int) savedVideoBuffer[frameId].size();
-	// printf("%d %d %d\n", frame[0], frame[1], frame[2]);
-	// printf("Size: %d\n", frameSize);
 
 	// Draw frame at position
 	Brain.Screen.drawImageFromBuffer(frame, x, y, frameSize);

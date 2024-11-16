@@ -16,10 +16,9 @@ namespace {
 		{},
 		{&teamLogo},
 		{&yoruNiKakeru, &badApple_suika, &yoruNiKakeru, &badApple_suika},
-		{&badApple_suika_image},
-		{&ningning},
-		{&ningning2},
-		{&ningning3},
+		{&badApple_image},
+		{&marioFlag},
+		{&ningning1, &ningning2, &ningning3},
 	};
 	std::vector< std::vector< std::pair<int, int> > > videoObjectPositions = {
 		{},
@@ -27,13 +26,11 @@ namespace {
 		{{0, 0}, {240, 0}, {0, 120}, {240, 120}},
 		{{0, 0}},
 		{{0, 0}},
-		{{0, 0}},
-		{{0, 0}},
+		{{0, 0}, {167, 60}, {345, 120}},
 	};
 
 	int playingVideoId = 0;
-
-	double display_width, display_height;
+	int refreshedVideoId = -1;
 
 	bool videoDebounce = false;
 
@@ -43,7 +40,10 @@ namespace {
 namespace video {
 	void keybindVideos() {
 		Controller1.ButtonLeft.pressed([]() -> void {
-			switchVideoState();
+			switchVideoState(-1);
+		});
+		Controller1.ButtonRight.pressed([]() -> void {
+			switchVideoState(1);
 		});
 	}
 
@@ -61,22 +61,30 @@ namespace video {
 			// Increment video id
 			playingVideoId += increment;
 			playingVideoId %= (int) videoObjects.size();
-			if (playingVideoId > 0) {
-				printf("Playing video %d!\n", playingVideoId);
+			if (playingVideoId < 0) {
+				playingVideoId += (int) videoObjects.size();
 			}
+
+			// if (playingVideoId > 0) {
+			// 	printf("Playing video %d!\n", playingVideoId);
+			// }
+
+			// Refresh screen
+			refreshedVideoId = -1;
+			task::sleep(30);
+			Brain.Screen.clearScreen(color::black);
+			task::sleep(30);
+			refreshedVideoId = playingVideoId;
 
 			// Reset time
 			videoTimePosition.reset();
 
-			// Refresh screen
-			task::sleep(40);
-			if (playingVideoId > 0) {
-				Brain.Screen.clearScreen(color::black);
-			}
-			task::sleep(30);
-
 			videoDebounce = false;
 		}
+	}
+
+	int getCurrentVideoId() {
+		return refreshedVideoId;
 	}
 }
 
