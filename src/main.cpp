@@ -22,6 +22,8 @@ int main() {
 	video::startThread();
 	video::keybindVideos();
 
+	Controller1.rumble(".--.-- -");
+
 	while(true) {
 		// Allow other tasks to run
 		// this_thread::sleep_for(10);
